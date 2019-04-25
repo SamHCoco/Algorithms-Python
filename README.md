@@ -44,3 +44,37 @@ Implementation of various classes of algorithms (e.g. search or sort) in Python.
              i = 0
      return number_list
  ```
+# Searching Algorithms
+*  ## Bisection Search
+```Python
+def bisection_search(search_value, numbers_list):
+    """Searches for number in list using bisection search.
+
+    args:
+    search_value (real number) - the search value to find in list
+    numbers_list (list) - list to be searched to find specified value
+
+    returns: The index of the searched value, None if not found or input is invalid
+    """
+    if is_valid_input(numbers_list, "BISECTION SEARCH") is False:
+        return None
+    numbers_list = sorted(numbers_list)
+    print("BINARY SEARCH - SORTED LIST: {}".format(numbers_list))
+    first_index = 0
+    last_index = list_size(numbers_list) - 1
+    middle_index = None
+    found = False
+    while not found:
+        middle_index = (first_index + last_index) // 2
+        if middle_index == first_index:
+            print("BISECTION SEARCH: {} not found".format(search_value))
+            return None
+        if numbers_list[middle_index] == search_value:
+            found = True
+        elif search_value > numbers_list[middle_index]:
+            first_index = middle_index
+        elif search_value < numbers_list[middle_index]:
+            last_index = middle_index
+    print("BISECTION SEARCH: {} found at index {}".format(search_value, middle_index))
+    return middle_index
+```
