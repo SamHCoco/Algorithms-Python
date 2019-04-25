@@ -13,9 +13,9 @@ class TestAlgorithms(unittest.TestCase):
         self.assertEqual(bubble_sort(self.unordered_list), self.expected_order)
         self.assertEqual(bubble_sort([]), None)
 
-    def test_bisection_search(self):
-        """Tests bisection search."""
-        self.assertEqual(bisection_search(-4, self.unordered_list), 1)
-        self.assertEqual(bisection_search(764.2, self.unordered_list), 5)
-        self.assertEqual(bisection_search(3.14159, self.unordered_list), None)
-        self.assertEqual(bisection_search(-4, []), None)
+    def test_binary_search(self):
+        """Tests binary search."""
+        self.assertEqual(binary_search(-4, self.unordered_list), 1)
+        self.assertEqual(binary_search(764.2, self.unordered_list), 5)
+        self.assertEqual(binary_search(3.14159, self.unordered_list), None)
+        self.assertEqual(binary_search(-4, []), None)
