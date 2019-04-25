@@ -69,8 +69,8 @@ def bubble_sort(number_list):
 # ********************************* SEARCHING ALGORITHMS **************************************
 
 
-def bisection_search(search_value, numbers_list):
-    """Searches for number in list using bisection search.
+def binary_search(search_value, numbers_list):
+    """Searches for number in list using binary search.
 
     args:
     search_value (real number) - the search value to find in list
@@ -78,7 +78,7 @@ def bisection_search(search_value, numbers_list):
 
     returns: The index of the searched value, None if not found or input is invalid
     """
-    if is_valid_input(numbers_list, "BISECTION SEARCH") is False:
+    if is_valid_input(numbers_list, "BINARY SEARCH") is False:
         return None
     numbers_list = sorted(numbers_list)
     print("BINARY SEARCH - SORTED LIST: {}".format(numbers_list))
@@ -89,7 +89,7 @@ def bisection_search(search_value, numbers_list):
     while not found:
         middle_index = (first_index + last_index) // 2
         if middle_index == first_index:
-            print("BISECTION SEARCH: {} not found".format(search_value))
+            print("BINARY SEARCH: {} not found".format(search_value))
             return None
         if numbers_list[middle_index] == search_value:
             found = True
@@ -97,5 +97,5 @@ def bisection_search(search_value, numbers_list):
             first_index = middle_index
         elif search_value < numbers_list[middle_index]:
             last_index = middle_index
-    print("BISECTION SEARCH: {} found at index {}".format(search_value, middle_index))
+    print("BINARY SEARCH: {} found at index {}".format(search_value, middle_index))
     return middle_index
