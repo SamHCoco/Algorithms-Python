@@ -1,3 +1,22 @@
+def list_size(list_input):
+    """Calculates the size of the inputted list"""
+    return len(list_input)
+
+
+def is_valid_input(list_input, algorithm_name):
+    """Validates that input given is a list that contains only numbers.
+
+    returns: None if the input contains a non-numeric object
+    """
+    for element in list_input:
+        if type(element) not in (int, float):
+            print("{} ERROR: list contains non-numerical object '{}'".format(algorithm_name, element))
+            return False
+    if list_size(list_input) == 0:
+        print("{} ERROR: number list is empty".format(algorithm_name))
+        return False
+    return True
+
 # ******************************** SORTING ALGORITHMS **************************************************
 
 
@@ -10,20 +29,17 @@ def bubble_sort(number_list):
     returns: The number list sorted in ascending order or null if the list
     is has less than 2 elements, or contains a non-numeric element.
     """
-    list_size = len(number_list)
-    if list_size < 2:
+    size = list_size(number_list)
+    if size < 2:
         print("ERROR: list must contain at least 2 number or more")
         return None
-
-    for element in number_list:
-        if type(element) not in (int, float):
-            print("ERROR: list contains non-numerical object '{}'".format(element))
-            return None
+    if is_valid_input(number_list, "BUBBLE SORT") is False:
+        return None
     i = 0
     is_sorted = False
     swaps_counter = 0
     while not is_sorted:
-        while i != list_size - 1:
+        while i != size - 1:
             if number_list[i] < number_list[i + 1]:
                 i += 1
             elif number_list[i] > number_list[i + 1]:
@@ -40,5 +56,31 @@ def bubble_sort(number_list):
         else:
             swaps_counter = 0
             i = 0
+    print("BUBBLE SORT RESULT: {}".format(number_list))
     return number_list
 
+# ********************************* SEARCHING ALGORITHMS **************************************
+
+
+def bisection_search(search_value, numbers_list):
+    if is_valid_input(numbers_list, "BISECTION SEARCH") is False:
+        return None
+    numbers_list = sorted(numbers_list)
+    print("BINARY SEARCH - SORTED LIST: {}".format(numbers_list))
+    first_index = 0
+    last_index = list_size(numbers_list) - 1
+    middle_index = None
+    found = False
+    while not found:
+        middle_index = (first_index + last_index) // 2
+        if middle_index == first_index:
+            print("BISECTION SEARCH: {} not found".format(search_value))
+            return None
+        if numbers_list[middle_index] == search_value:
+            found = True
+        elif search_value > numbers_list[middle_index]:
+            first_index = middle_index
+        elif search_value < numbers_list[middle_index]:
+            last_index = middle_index
+    print("BISECTION SEARCH: {} found at index {}".format(search_value, middle_index))
+    return middle_index
