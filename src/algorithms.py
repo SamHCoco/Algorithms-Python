@@ -1,10 +1,17 @@
 def list_size(list_input):
-    """Calculates the size of the inputted list"""
+    """Calculates the size of the inputted list.
+
+    returns: The number of element in the inputted list
+    """
     return len(list_input)
 
 
 def is_valid_input(list_input, algorithm_name):
     """Validates that input given is a list that contains only numbers.
+
+    args:
+    list_input (list) -- the list to be validated
+    algorithm_name -- the algorithm calling on this method for validation
 
     returns: None if the input contains a non-numeric object
     """
@@ -27,7 +34,7 @@ def bubble_sort(number_list):
     number_list (list) -- a list of real numbers
 
     returns: The number list sorted in ascending order or null if the list
-    is has less than 2 elements, or contains a non-numeric element.
+    is has less than 2 elements, or contains a non-numeric element
     """
     size = list_size(number_list)
     if size < 2:
@@ -63,6 +70,14 @@ def bubble_sort(number_list):
 
 
 def bisection_search(search_value, numbers_list):
+    """Searches for number in list using bisection search.
+
+    args:
+    search_value (real number) - the search value to find in list
+    numbers_list (list) - list to be searched to find specified value
+
+    returns: The index of the searched value, None if not found or input is invalid
+    """
     if is_valid_input(numbers_list, "BISECTION SEARCH") is False:
         return None
     numbers_list = sorted(numbers_list)
