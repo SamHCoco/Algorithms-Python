@@ -1,5 +1,5 @@
 # Algorithms: Python Implementations
-Implementation of various classes of algorithms (e.g. search or sort) in Python.
+The source code samples below are my implementations of various algorithms using Python.
 
 # Introduction
 An algorithm can be defined as a series of steps used to produce some result. They have a specific meaning in computer science and are defined by the following **3 characteristics**:
