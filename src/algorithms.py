@@ -13,14 +13,19 @@ def is_valid_input(list_input, algorithm_name):
     list_input (list) -- the list to be validated
     algorithm_name -- the algorithm calling on this method for validation
 
-    returns: None if the input contains a non-numeric object
+    returns: False if the input list has size 0, size < 2 or contains a non-numeric element.
+    True otherwise
     """
     for element in list_input:
         if type(element) not in (int, float):
             print("{} ERROR: list contains non-numerical object '{}'".format(algorithm_name, element))
             return False
-    if list_size(list_input) == 0:
+    size = list_size(list_input)
+    if size == 0:
         print("{} ERROR: number list is empty".format(algorithm_name))
+        return False
+    if size < 2:
+        print("ERROR: list must contain at least 2 numbers or more")
         return False
     return True
 
@@ -36,15 +41,12 @@ def bubble_sort(number_list):
     returns: The number list sorted in ascending order or null if the list
     is has less than 2 elements, or contains a non-numeric element
     """
-    size = list_size(number_list)
-    if size < 2:
-        print("ERROR: list must contain at least 2 number or more")
-        return None
     if is_valid_input(number_list, "BUBBLE SORT") is False:
         return None
     i = 0
     is_sorted = False
     swaps_counter = 0
+    size = list_size(number_list)
     while not is_sorted:
         while i != size - 1:
             if number_list[i] < number_list[i + 1]:
@@ -65,6 +67,17 @@ def bubble_sort(number_list):
             i = 0
     print("BUBBLE SORT RESULT: {}".format(number_list))
     return number_list
+
+
+def quick_sort(number_list):
+    """Sorts numerical list in ascending order using QuickSort algorithm.
+
+    args:
+    number_list (list) -- a list of real numbers
+    """
+    if is_valid_input(number_list, "QUICK SORT") is False:
+        return None
+
 
 # ********************************* SEARCHING ALGORITHMS **************************************
 
