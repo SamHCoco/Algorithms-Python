@@ -79,6 +79,33 @@ def quick_sort(number_list):
         return None
 
 
+def quick_sort_partition(array, first_index, last_index):
+    """Swaps numbers less than pivot to its left and values greater to the right.
+
+    This method is to be used as part of the Quick Sort method.
+
+    args:
+    array -- the array to be sorted by Quick Sort
+    first_index -- the first index of the array (or its partition) to be sorted
+    last_index --  the last index of the array (or its partition)
+    """
+    pivot_value = array[last_index]  # the initial pivot value
+    pivot_index = last_index  # the pivot index
+    current_index = first_index
+    current_value = array[first_index]  # the initial comparison value
+    while current_index != pivot_index:
+        if current_value > pivot_value:
+            array[pivot_index] = current_value
+            array[current_index] = array[pivot_index - 1]
+            array[pivot_index - 1] = pivot_value
+            pivot_index -= 1
+            current_index += 1
+            current_value = array[current_index]
+        else:
+            current_index += 1
+            current_value = array[current_index]
+    print(array)
+
 # ********************************* SEARCHING ALGORITHMS **************************************
 
 
@@ -112,3 +139,6 @@ def binary_search(search_value, numbers_list):
             last_index = middle_index
     print("BINARY SEARCH: {} found at index {}".format(search_value, middle_index))
     return middle_index
+
+val = [7, 5, 6]
+quick_sort_partition(val, 0, 2)
