@@ -78,7 +78,25 @@ def quick_sort(number_list):
     if is_valid_input(number_list, "QUICK SORT") is False:
         return None
 
-
+    def partition(array, start_index, last_index):
+        """Partitions array so that values less than pivot are to the left and values
+        greater than pivot are to the right of the pivot."""
+        first_index = 0
+        last_index = len(array) - 1
+        partition_index = 0
+        pivot_index = last_index
+        for i in range(first_index, last_index - 1):
+            if array[i] > array[pivot_index]:
+                continue
+            else:
+                partition_value = array[partition_index]
+                array[partition_index] = array[i]
+                array[i] = partition_value
+                partition_index += 1
+        pivot_value = array[pivot_index]
+        array[pivot_index] = array[partition_index]
+        array[partition_index] = pivot_value
+        print(array)
 # ********************************* SEARCHING ALGORITHMS **************************************
 
 
@@ -113,5 +131,3 @@ def binary_search(search_value, numbers_list):
     print("BINARY SEARCH: {} found at index {}".format(search_value, middle_index))
     return middle_index
 
-val = [7, 5, 6]
-quick_sort_partition(val, 0, 2)
