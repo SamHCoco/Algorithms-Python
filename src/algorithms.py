@@ -78,25 +78,50 @@ def quick_sort(number_list):
     if is_valid_input(number_list, "QUICK SORT") is False:
         return None
 
-    def partition(array, start_index, last_index):
-        """Partitions array so that values less than pivot are to the left and values
-        greater than pivot are to the right of the pivot."""
-        first_index = 0
-        last_index = len(array) - 1
+    def partition(array, first_index, last_index):
+        """Partitions an array so that values less than pivot are to the left and values
+        greater than pivot are to the right of the pivot.
+
+        args:
+        array -- the array to be partitioned
+        first_index -- the starting index of the array
+        last_index --  the end index of the array
+
+        returns: A partitioned array with all values less than the pivot to the left of the
+        pivot and values greater than the pivot to the right
+        """
         partition_index = 0
         pivot_index = last_index
-        for i in range(first_index, last_index - 1):
-            if array[i] > array[pivot_index]:
+        pivot_value = array[pivot_index]
+        pivot_value_counter = 1  # counts occurrence of pivot value in array (including its occurrence at last index)
+
+        for i in range(first_index, len(array) - 1):
+            if array[i] > pivot_value:
                 continue
-            else:
+            elif array[i] < pivot_value:
                 partition_value = array[partition_index]
                 array[partition_index] = array[i]
                 array[i] = partition_value
                 partition_index += 1
-        pivot_value = array[pivot_index]
+            elif array[i] == pivot_value:
+                pivot_value_counter += 1
+
         array[pivot_index] = array[partition_index]
         array[partition_index] = pivot_value
-        print(array)
+        pivot_index = partition_index
+
+        #  ensures values which = pivot are adjacent in final partitioned array
+        partitioned_array = []
+        if pivot_value_counter > 0:
+            for i in range(0, len(array)):
+                if array[i] != pivot_value:
+                    partitioned_array.append(array[i])
+                if i == pivot_index:
+                    for j in range(0, pivot_value_counter):
+                        partitioned_array.append(pivot_value)
+        print(partitioned_array)
+        return partitioned_array
+
 # ********************************* SEARCHING ALGORITHMS **************************************
 
 
@@ -130,4 +155,3 @@ def binary_search(search_value, numbers_list):
             last_index = middle_index
     print("BINARY SEARCH: {} found at index {}".format(search_value, middle_index))
     return middle_index
-
