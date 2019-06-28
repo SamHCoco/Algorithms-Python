@@ -69,7 +69,7 @@ def bubble_sort(number_list):
     return number_list
 
 
-def quick_sort(number_list):
+def quick_sort(number_list, start_index, end_index):
     """Sorts numerical list in ascending order using QuickSort algorithm.
 
     args:
@@ -90,10 +90,10 @@ def quick_sort(number_list):
         returns: A partitioned array with all values less than the pivot to the left of the
         pivot and values greater than the pivot to the right
         """
-        partition_index = 0
+        partition_index = first_index
         pivot_index = last_index
         pivot_value = array[pivot_index]
-        pivot_value_counter = 1  # counts occurrence of pivot value in array (including its occurrence at last index)
+        pivot_value_counter = 0  # counts occurrence of pivot value in array (including its occurrence at last index)
 
         for i in range(first_index, len(array) - 1):
             if array[i] > pivot_value:
@@ -119,9 +119,18 @@ def quick_sort(number_list):
                 if i == pivot_index:
                     for j in range(0, pivot_value_counter):
                         partitioned_array.append(pivot_value)
-        print(partitioned_array)
-        return partitioned_array
+        array = partitioned_array
+        print(array)
+        return pivot_index
 
+    if start_index < end_index:
+        pivot_index = partition(number_list, start_index, end_index)
+        quick_sort(number_list, start_index, pivot_index - 1)
+        quick_sort(number_list, pivot_index + 1, end_index)
+        return number_list
+
+result = quick_sort([3.14, 20, 1, 2, 5, 3, 7, 9, 5], 0, 8)
+print(result)
 # ********************************* SEARCHING ALGORITHMS **************************************
 
 
