@@ -19,3 +19,6 @@ class TestAlgorithms(unittest.TestCase):
         self.assertEqual(binary_search(764.2, self.unordered_list), 5)
         self.assertEqual(binary_search(3.14159, self.unordered_list), None)
         self.assertEqual(binary_search(-4, []), None)
+
+    def test_quick_sort(self):
+        self.assertEqual(quick_sort(self.unordered_list, 0, 6), self.expected_order)
