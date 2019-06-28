@@ -74,6 +74,10 @@ def quick_sort(number_list, start_index, end_index):
 
     args:
     number_list (list) -- a list of real numbers
+    start_index (int) -- the starting index the number list
+    end_index (int) -- the ending index of the number list
+
+    returns: The inputted number list, sorted in ascending order
     """
     if is_valid_input(number_list, "QUICK SORT") is False:
         return None
@@ -83,9 +87,9 @@ def quick_sort(number_list, start_index, end_index):
         greater than pivot are to the right of the pivot.
 
         args:
-        array -- the array to be partitioned
-        first_index -- the starting index of the array
-        last_index --  the end index of the array
+        array (list) -- the array to be partitioned
+        first_index (int) -- the starting index of the array
+        last_index (int) --  the end index of the array
 
         returns: A partitioned array with all values less than the pivot to the left of the
         pivot and values greater than the pivot to the right
