@@ -124,13 +124,13 @@ def quick_sort(number_list, start_index, end_index):
                     for j in range(0, pivot_value_counter):
                         partitioned_array.append(pivot_value)
         array = partitioned_array
-        print(array)
         return pivot_index
 
     if start_index < end_index:
         pivot_index = partition(number_list, start_index, end_index)
         quick_sort(number_list, start_index, pivot_index - 1)
         quick_sort(number_list, pivot_index + 1, end_index)
+        print("QUICK SORT COMPLETE: {}".format(number_list))
         return number_list
 
 result = quick_sort([3.14, 20, 1, 2, 5, 3, 7, 9, 5], 0, 8)
