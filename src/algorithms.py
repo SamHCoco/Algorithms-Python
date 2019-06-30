@@ -99,7 +99,7 @@ def quick_sort(number_list, start_index, end_index):
         pivot_value = array[pivot_index]
         pivot_value_counter = 0  # counts occurrence of pivot value in array (including its occurrence at last index)
 
-        for i in range(first_index, len(array) - 1):
+        for i in range(first_index, len(array)):
             if array[i] > pivot_value:
                 continue
             elif array[i] < pivot_value:
@@ -130,11 +130,10 @@ def quick_sort(number_list, start_index, end_index):
         pivot_index = partition(number_list, start_index, end_index)
         quick_sort(number_list, start_index, pivot_index - 1)
         quick_sort(number_list, pivot_index + 1, end_index)
-        print("QUICK SORT COMPLETE: {}".format(number_list))
-        return number_list
 
-result = quick_sort([3.14, 20, 1, 2, 5, 3, 7, 9, 5], 0, 8)
-print(result)
+    print("QUICK SORT COMPLETE: {}".format(number_list))
+    return number_list
+
 # ********************************* SEARCHING ALGORITHMS **************************************
 
 
