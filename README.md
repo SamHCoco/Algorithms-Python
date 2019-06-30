@@ -51,6 +51,74 @@ An algorithm can be defined as a series of steps used to produce some result. Th
              i = 0
      return number_list
  ```
+*  ## Quick Sort
+```Python
+def quick_sort(number_list, start_index, end_index):
+    """Sorts numerical list in ascending order using QuickSort algorithm.
+
+    args:
+    number_list (list) -- a list of real numbers
+    start_index (int) -- the starting index the number list
+    end_index (int) -- the ending index of the number list
+
+    returns: The inputted number list, sorted in ascending order
+    """
+    if is_valid_input(number_list, "QUICK SORT") is False:
+        return None
+
+    def partition(array, first_index, last_index):
+        """Partitions an array so that values less than pivot are to the left and values
+        greater than pivot are to the right of the pivot.
+
+        args:
+        array (list) -- the array to be partitioned
+        first_index (int) -- the starting index of the array
+        last_index (int) --  the end index of the array
+
+        returns: A partitioned array with all values less than the pivot to the left of the
+        pivot and values greater than the pivot to the right
+        """
+        partition_index = first_index
+        pivot_index = last_index
+        pivot_value = array[pivot_index]
+        pivot_value_counter = 0  # counts occurrence of pivot value in array (including its occurrence at last index)
+
+        for i in range(first_index, len(array)):
+            if array[i] > pivot_value:
+                continue
+            elif array[i] < pivot_value:
+                partition_value = array[partition_index]
+                array[partition_index] = array[i]
+                array[i] = partition_value
+                partition_index += 1
+            elif array[i] == pivot_value:
+                pivot_value_counter += 1
+
+        array[pivot_index] = array[partition_index]
+        array[partition_index] = pivot_value
+        pivot_index = partition_index
+
+        #  ensures values which = pivot are adjacent in final partitioned array
+        partitioned_array = []
+        if pivot_value_counter > 0:
+            for i in range(0, len(array)):
+                if array[i] != pivot_value:
+                    partitioned_array.append(array[i])
+                if i == pivot_index:
+                    for j in range(0, pivot_value_counter):
+                        partitioned_array.append(pivot_value)
+        array = partitioned_array
+        return pivot_index
+
+    if start_index < end_index:
+        pivot_index = partition(number_list, start_index, end_index)
+        quick_sort(number_list, start_index, pivot_index - 1)
+        quick_sort(number_list, pivot_index + 1, end_index)
+
+    print("QUICK SORT COMPLETE: {}".format(number_list))
+    return number_list
+```
+
 # Searching Algorithms
 *  ## Binary Search
 ```Python
